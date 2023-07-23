@@ -1,0 +1,48 @@
+<div style="margin-bottom: 2em;">
+    <h1>SIBI TextToGesture</h1>
+    <input type="button" class="btn btn-primary" value="Request Gesture" onclick="location.href='{{editurl}}'" id="sibi-button">
+</div>
+
+<div>
+    <h3>🚩 Running Gestures</h3>
+    {{#running}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+    </div>
+    {{/running}}
+</div>
+
+<div>
+    <h3>⏰ Queued Gestures</h3>
+    {{#queued}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+    </div>
+    {{/queued}}
+</div>
+
+<div>
+    <h3>✔️ Successful Gestures</h3>
+    {{#success}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5><a href="{{final_url}}" target="_blank">{{filename}}</a></h5>
+        <p style="margin-bottom: 0em;">Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+        <p style="margin-bottom: 0em;">Time taken: {{duration}}</p>
+        <p style="margin-bottom: 0em;">Words: {{words}}</p>
+        <p style="margin-bottom: 0em;">Words not found: {{words_not_found}}</p>
+        <p style="margin-bottom: 0em;">Characters not found: {{characters_not_found}}</p>
+    </div>
+    {{/success}}
+</div>
+
+<div>
+    <h3>❌ Failure Gestures</h3>
+    {{#failure}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+    </div>
+    {{/failure}}
+</div>
