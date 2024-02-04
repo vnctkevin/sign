@@ -18,7 +18,7 @@
  * Defines the version and other meta-info about the plugin
  *
  * @package     local_sign
- * @author      Valentino
+ * @author      Valentino - Fakhri - Kevin - Sekar
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -33,16 +33,60 @@ class add extends moodleform
 
         $mform = $this->_form; // Don't forget the underscore! 
 
+        $radioarray=array();
+        $radioarray[] = $mform->createElement('radio', 'filesfrom', '', 'Upload', 'Upload', $attributes);
+        $radioarray[] = $mform->createElement('radio', 'filesfrom', '', 'URL', 'URL', $attributes);
+        $mform->addGroup($radioarray, 'filefrom', 'Asal file', array(' '), false);
+        $mform->setDefault('filesfrom', 'Upload');
+
         $mform->addElement('text', 'url', 'Video URL', array('placeholder' => 'Enter video URL')); // Add elements to your form.
         $mform->setType('url', PARAM_NOTAGS); // Set type of element.
 
-        $mform->addElement('textarea', 'subtitle', 'Subtitle', array('placeholder' => 'Insert subtitle', 'rows' => '10'));
+        $mform->addElement(
+            'filepicker',
+            'userfile',
+            get_string('file'),
+            null,
+            [
+                'maxbytes' => $maxbytes,
+                'accepted_types' => '*',
+            ]
+        );
+
+        $mform->hideIf('url', 'filesfrom', 'neq', 'URL');
+        $mform->hideIf('userfile', 'filesfrom', 'neq', 'Upload');
+
+
+        $radioarray2=array();
+        $radioarray2[] = $mform->createElement('radio', 'asr', '', 'Google', 'Google', $attributes);
+        $radioarray2[] = $mform->createElement('radio', 'asr', '', 'Wav2Vec', 'Wav2Vec', $attributes);
+        $radioarray2[] = $mform->createElement('radio', 'asr', '', 'Azure', 'Azure', $attributes);
+        $radioarray2[] = $mform->createElement('radio', 'asr', '', 'Manual', 'Manual', $attributes);
+        $mform->addGroup($radioarray2, 'asrtype', 'Pembentukan subtitle', array(' '), false);
+        $mform->setDefault('asr', 'Google');
+
+        $subtitle_attributes = array('placeholder' => 'Insert subtitle', 'rows' => '10');
+        $mform->addElement('textarea', 'subtitle', 'Subtitle', $subtitle_attributes);
+
+        $mform->hideIf('subtitle', 'asr', 'neq', 'Manual');
         
+
+    
         $this->add_action_buttons();
     }
     //Custom validation should be added here
     function validation($data, $files)
     {
         return array();
+    }
+
+    function get_extra_validation() {
+        $script = '
+            <script type="text/javascript">
+                
+            
+            </script>
+        ';
+        return $script;
     }
 }

@@ -18,11 +18,13 @@
  * Defines the version and other meta-info about the plugin
  *
  * @package     local_sign
- * @author      Valentino
+ * @author      Valentino - Fakhri - Kevin - Sekar
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once(__DIR__ . '/../../config.php');
+$PAGE->set_url(new moodle_url('/local/sign/upload.php'));
+$PAGE->set_context(\context_system::instance());
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
     $targetDir = 'uploads/'; // Specify the target directory where the file will be stored

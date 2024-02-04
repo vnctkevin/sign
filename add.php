@@ -18,7 +18,7 @@
  * Defines the version and other meta-info about the plugin
  *
  * @package     local_sign
- * @author      Valentino
+ * @author      Valentino - Fakhri - Kevin - Sekar
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -35,11 +35,23 @@ $mform = new add();
 if ($mform->is_cancelled()) {
     redirect($CFG->wwwroot . '/local/sign/manage.php', 'Operation cancelled');
 } else if ($fromform = $mform->get_data()) {
-    // Convert the form data to JSON
-    $jsonData = json_encode($fromform);
+    
+    if ($fromform->filesfrom == "Upload") {
+        $content = $mform->get_file_content('userfile');
+        $newfilename = $mform->get_new_filename('userfile');
+        $fromform->filename = $newfilename;
 
+        $shortpath = 'uploads/'. $newfilename;
+        $longpath = $CFG->wwwroot . '/local/sign/uploads/' . rawurlencode($newfilename);
+        $success = $mform->save_file('userfile', $shortpath, $override);
+        $fromform->url = $longpath;
+        }
+
+    // Convert the form data to JSON
+
+    $jsonData = json_encode($fromform);
     // Set the endpoint URL
-    $endpointUrl = 'http://34.101.204.135:8000/add';
+    $endpointUrl = 'http://127.0.0.1:8000/add';
 
     // Set the request headers
     $headers = array(
@@ -48,6 +60,9 @@ if ($mform->is_cancelled()) {
 
     // Initialize cURL
     $ch = curl_init();
+    
+
+    //redirect($CFG->wwwroot . '/local/sign/manage.php', null, null, null);
 
     // Set cURL options
     curl_setopt($ch, CURLOPT_URL, $endpointUrl);
@@ -58,6 +73,7 @@ if ($mform->is_cancelled()) {
 
     // Execute the cURL request
     $response = curl_exec($ch);
+    //sleep(1000);
     $message = json_decode($response, true)['message'];
 
     // Check for any cURL errors

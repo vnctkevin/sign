@@ -2,29 +2,29 @@
     <h1>SIBI TextToGesture</h1>
     <input type="button" class="btn btn-primary" value="Upload Video" onclick="location.href='{{editurl}}'" id="upload-video-button">
     <input type="button" class="btn btn-primary" value="Request Gesture" onclick="location.href='{{editurl}}'" id="sibi-button">
-    <br />
+
     <h2> Subtitles </h2>
-</div>
 
-<div>
-    <h3>🚩 Subtitle Requests</h3>
-    {{#subtitlelist}}
-    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
-        <h5>{{filename}}</h5>
-        <p>Duration: {{duration}}</p>
-        <p>ASR: {{asrtype}}</p>
-        <p>{{Subtitle}} </p>
-    </div>
-    {{/subtitlelist}}
-</div>
-
-<div style="margin-bottom: 2em;">
-    <br />
     <h2> Gestures </h2>
 </div>
 
 <div>
-    
+    <h3>🚩 Subtitle Requests</h3>
+    {{#running}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+    </div>
+    {{/running}}
+    {{#subtitlelist}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Duration: {{duration}}</p>
+    </div>
+    {{/subtitlelist}}
+</div>
+
+<div>
     <h3>🚩 Running Gestures</h3>
     {{#running}}
     <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">

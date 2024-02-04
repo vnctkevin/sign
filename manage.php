@@ -18,7 +18,7 @@
  * Defines the version and other meta-info about the plugin
  *
  * @package     local_sign
- * @author      Valentino
+ * @author      Valentino - Fakhri
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -32,19 +32,24 @@ $curl = curl_init();
 
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-curl_setopt($curl, CURLOPT_URL, 'http://34.101.204.135:8000/get_running_gesture');
+curl_setopt($curl, CURLOPT_URL, 'http://127.0.0.1:8000/get_subtitle'); 
+$response = curl_exec($curl);
+$subtitlelist = json_decode($response, true);
+
+
+curl_setopt($curl, CURLOPT_URL, 'http://127.0.0.1:8000/get_running_gesture'); 
 $response = curl_exec($curl);
 $running = json_decode($response, true);
 
-curl_setopt($curl, CURLOPT_URL, 'http://34.101.204.135:8000/get_successful_gesture');
+curl_setopt($curl, CURLOPT_URL, 'http://127.0.0.1:8000/get_successful_gesture');
 $response = curl_exec($curl);
 $success = json_decode($response, true);
 
-curl_setopt($curl, CURLOPT_URL, 'http://34.101.204.135:8000/get_queued_gesture');
+curl_setopt($curl, CURLOPT_URL, 'http://127.0.0.1:8000/get_queued_gesture');
 $response = curl_exec($curl);
 $queued = json_decode($response, true);
 
-curl_setopt($curl, CURLOPT_URL, 'http://34.101.204.135:8000/get_failure_gesture');
+curl_setopt($curl, CURLOPT_URL, 'http://127.0.0.1:8000/get_failure_gesture');
 $response = curl_exec($curl);
 $failure = json_decode($response, true);
 
@@ -54,6 +59,7 @@ echo $OUTPUT->header();
 
 $templatecontext = (object)[
     'editurl' => new moodle_url('/local/sign/add.php'),
+    'subtitlelist' => $subtitlelist,
     'running' => $running,
     'success' => $success,
     'queued' => $queued,

@@ -1,6 +1,6 @@
 function checkAvailability() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://34.101.204.135:4444/", true);
+    xhr.open("GET", "http://localhost:4444/", true);
     xhr.onreadystatechange = function () {
         var parentElement = document.getElementById("sibi-status");
         var button = document.getElementById("sibi-button");
