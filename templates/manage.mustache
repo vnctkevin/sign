@@ -1,6 +1,6 @@
 <div style="margin-bottom: 2em;">
-    <h1>SIBI TextToGesture</h1>
-    <input type="button" class="btn btn-primary" value="Upload Video" onclick="location.href='{{editurl}}'" id="upload-video-button">
+    <h1>SIBI Gesture Generator</h1>
+    <input type="button" class="btn btn-outline-primary" value="Upload Video" onclick="location.href='{{editurl}}'" id="upload-video-button"> 
     <input type="button" class="btn btn-primary" value="Request Gesture" onclick="location.href='{{editurl}}'" id="sibi-button">
     <br />
     <h2> Subtitles </h2>
@@ -25,7 +25,7 @@
 
 <div>
     
-    <h3>🚩 Running Gestures</h3>
+    <h3 style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">🚩 Running Gestures</h3>
     {{#running}}
     <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
         <h5>{{filename}}</h5>
@@ -35,7 +35,7 @@
 </div>
 
 <div>
-    <h3>⏰ Queued Gestures</h3>
+    <h3 style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">⏰ Queued Gestures</h3>
     {{#queued}}
     <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
         <h5>{{filename}}</h5>
@@ -45,7 +45,7 @@
 </div>
 
 <div>
-    <h3>✔️ Successful Gestures</h3>
+    <h3 style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">✔️ Successful Gestures</h3>
     {{#success}}
     <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
         <h5><a href="{{final_url}}" target="_blank">{{filename}}</a></h5>
@@ -59,11 +59,15 @@
 </div>
 
 <div>
-    <h3>❌ Failure Gestures</h3>
+    <h3 style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">❌ Failure Gestures</h3>
     {{#failure}}
     <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
         <h5>{{filename}}</h5>
         <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+        <p>Error: {{error}}</p>
     </div>
     {{/failure}}
 </div>
+
+<style>
+
