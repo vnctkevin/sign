@@ -18,7 +18,7 @@
  * Defines the version and other meta-info about the plugin
  *
  * @package     local_sign
- * @author      Valentino - Fakhri
+ * @author      Valentino - Fakhri - Kevin - Sekar
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
