@@ -27,6 +27,9 @@ require_once(__DIR__ . '/../../config.php');
 $PAGE->set_url(new moodle_url('/local/sign/manage.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('Form');
+$PAGE->navbar->add('Home', new moodle_url('/local/sign/index.php'));
+$PAGE->navbar->add('Tambah Animasi', new moodle_url('/local/sign/add.php'));
+$PAGE->navbar->add('Lihat Hasil', new moodle_url('/local/sign/manage.php'));
 
 $curl = curl_init();
 

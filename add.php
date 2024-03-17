@@ -29,6 +29,10 @@ $PAGE->set_url(new moodle_url('/local/sign/add.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('Add');
 
+$PAGE->navbar->add('Home', new moodle_url('/local/sign/index.php'));
+$PAGE->navbar->add('Tambah Animasi', new moodle_url('/local/sign/add.php'));
+$PAGE->navbar->add('Lihat Hasil', new moodle_url('/local/sign/manage.php'));
+
 $mform = new add();
 
 //Form processing and displaying is done here

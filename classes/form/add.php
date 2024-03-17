@@ -36,7 +36,7 @@ class add extends moodleform
         $radioarray=array();
         $radioarray[] = $mform->createElement('radio', 'filesfrom', '', 'Upload', 'Upload', $attributes);
         $radioarray[] = $mform->createElement('radio', 'filesfrom', '', 'URL', 'URL', $attributes);
-        $mform->addGroup($radioarray, 'filefrom', 'Asal file', array(' '), false);
+        $mform->addGroup($radioarray, 'filefrom', 'Pilih Sumber File', array(' '), false);
         $mform->setDefault('filesfrom', 'Upload');
 
         $mform->addElement('text', 'url', 'Video URL', array('placeholder' => 'Enter video URL')); // Add elements to your form.

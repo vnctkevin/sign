@@ -1,7 +1,66 @@
 <script src="https://cdn.tailwindcss.com"></script>
+
 <div style="margin-bottom: 2em;">
-    <h1 class="text-4xl font-black pb-4">SIBI Gesture Generator</h1>
-    <div class="py-2 flex space-x-4">
+    <div class="py-4 pb-8 space-y-4">
+        <h1 class="text-4xl font-bold text-center">Kelola Video Unggahan</h1>
+        <p class="text-center">Cek Status Video disini</p>
+        </div>
+    <br />
+
+
+<div>
+    
+    <h3 class="text-xl font-bold" >🚩 Subtitle Sedang Dikerjakan</h3>
+    <p class="pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">Video sedang menunggu antrian pembangkit animasi</p>
+    {{#running}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+    </div>
+    {{/running}}
+</div>
+
+<div>
+    <h3 class="text-xl font-bold" >⏰ Dalam Antrian</h3>
+    <p class="pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">Video sedang dalam proses pembangkitan animasi SIBI</p>
+    {{#queued}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+    </div>
+    {{/queued}}
+</div>
+
+<div>
+    <h3 class="text-xl font-bold">✔️ Animasi Selesai</h3>
+    <p class="pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">Video sudah dilengkapi animasi SIBI</p>
+    {{#success}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5><a href="{{final_url}}" target="_blank">{{filename}}</a></h5>
+        <p style="margin-bottom: 0em;">Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+        <p style="margin-bottom: 0em;">Time taken: {{duration}}</p>
+        <p style="margin-bottom: 0em;">Words: {{words}}</p>
+        <p style="margin-bottom: 0em;">Words not found: {{words_not_found}}</p>
+        <p style="margin-bottom: 0em;">Characters not found: {{characters_not_found}}</p>
+    </div>
+    {{/success}}
+</div>
+
+<div>
+    <h3 class="text-xl font-bold">❌ Gagal Membangkitkan Animasi</h3>
+    <p class="pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">Video gagal dibangkitkan animasi SIBI</p>
+    {{#failure}}
+    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
+        <h5>{{filename}}</h5>
+        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
+        <p>Error: {{error}}</p>
+    </div>
+    {{/failure}}
+</div>
+<div class="py-4 pb-8 space-y-4">
+<h2 class="text-2xl font-bold text-center">Menu Lainnya</h1>
+<div class="py-2 flex space-x-4 flex items-center justify-center">
+
         <button type="button" class="flex align-items-center gap-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-blue-500 py-2 px-4 border border-blue-500 hover:border-transparent rounded" value="Upload Video" onclick="location.href='{{editurl}}'" id="upload-video-button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                 <path d="M7.25 10.25a.75.75 0 0 0 1.5 0V4.56l2.22 2.22a.75.75 0 1 0 1.06-1.06l-3.5-3.5a.75.75 0 0 0-1.06 0l-3.5 3.5a.75.75 0 0 0 1.06 1.06l2.22-2.22v5.69Z" />
@@ -16,72 +75,6 @@
             Request Gesture
             </button>
     </div>
-    <br />
-    <h2 class="text-2xl font-bold p2-4"> Subtitles </h2>
 </div>
-
-<div>
-    <h3 class="text-xl font-bold p2-4">🚩 Subtitle Requests</h3>
-    {{#subtitlelist}}
-    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
-        <h5>{{filename}}</h5>
-        <p>Duration: {{duration}}</p>
-        <p>ASR: {{asrtype}}</p>
-        <p>{{Subtitle}} </p>
-    </div>
-    {{/subtitlelist}}
-</div>
-
-<div style="margin-bottom: 2em;">
-    <br />
-    <h2 class="text-2xl font-bold pb-4"> Gestures </h2>
-</div>
-
-<div>
-    
-    <h3 class="text-xl font-bold pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">🚩 Running Gestures</h3>
-    {{#running}}
-    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
-        <h5>{{filename}}</h5>
-        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
-    </div>
-    {{/running}}
-</div>
-
-<div>
-    <h3 class="text-xl font-bold pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">⏰ Queued Gestures</h3>
-    {{#queued}}
-    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
-        <h5>{{filename}}</h5>
-        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
-    </div>
-    {{/queued}}
-</div>
-
-<div>
-    <h3 class="text-xl font-bold pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">✔️ Successful Gestures</h3>
-    {{#success}}
-    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
-        <h5><a href="{{final_url}}" target="_blank">{{filename}}</a></h5>
-        <p style="margin-bottom: 0em;">Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
-        <p style="margin-bottom: 0em;">Time taken: {{duration}}</p>
-        <p style="margin-bottom: 0em;">Words: {{words}}</p>
-        <p style="margin-bottom: 0em;">Words not found: {{words_not_found}}</p>
-        <p style="margin-bottom: 0em;">Characters not found: {{characters_not_found}}</p>
-    </div>
-    {{/success}}
-</div>
-
-<div>
-    <h3 class="text-xl font-bold pb-2" style="border-bottom: 2px solid grey; padding: 5px; margin-bottom: 1em;">❌ Failure Gestures</h3>
-    {{#failure}}
-    <div style="border: 2px solid grey; border-radius: 8px; padding: 5px; margin-bottom: 1em;">
-        <h5>{{filename}}</h5>
-        <p>Source: <a href="{{url}}" target="_blank">{{url}}</a></p>
-        <p>Error: {{error}}</p>
-    </div>
-    {{/failure}}
-</div>
-
 <style>
 
