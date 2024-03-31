@@ -42,6 +42,8 @@ class add extends moodleform
         $mform->addElement('text', 'url', 'Video URL', array('placeholder' => 'Enter video URL')); // Add elements to your form.
         $mform->setType('url', PARAM_NOTAGS); // Set type of element.
 
+        $mform->addElement('text', 'title', 'Judul', array('placeholder' => 'Masukkan judul video'));
+
         $mform->addElement(
             'filepicker',
             'userfile',
@@ -56,6 +58,10 @@ class add extends moodleform
         $mform->hideIf('url', 'filesfrom', 'neq', 'URL');
         $mform->hideIf('userfile', 'filesfrom', 'neq', 'Upload');
 
+        $mform->addElement('select', 'videotype', 'Tipe Video', array('Asynchronous', 'Synchronous'));
+        $mform->setDefault('videotype', 'Asynchronous');
+
+        $mform->addElement('select', 'personagender', 'Persona Narator Video', array('Laki-laki', 'Perempuan', 'Keduanya'));
 
         $radioarray2=array();
         $radioarray2[] = $mform->createElement('radio', 'asr', '', 'Google', 'Google', $attributes);
@@ -65,12 +71,12 @@ class add extends moodleform
         $mform->addGroup($radioarray2, 'asrtype', 'Pembentukan subtitle', array(' '), false);
         $mform->setDefault('asr', 'Google');
 
-        $subtitle_attributes = array('placeholder' => 'Insert subtitle', 'rows' => '10');
+        $subtitle_attributes = array('placeholder' => 'Masukkan subtitle manual', 'rows' => '10');
         $mform->addElement('textarea', 'subtitle', 'Subtitle', $subtitle_attributes);
 
         $mform->hideIf('subtitle', 'asr', 'neq', 'Manual');
         
-
+        $mform->addElement('textarea', 'description', 'Deskripsi', array('placeholder' => 'Masukkan deskripsi video'));
     
         $this->add_action_buttons();
     }
